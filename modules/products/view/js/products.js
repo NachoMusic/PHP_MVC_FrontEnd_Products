@@ -157,7 +157,7 @@ $(document).ready(function() {
                 url: "modules/products/controller/controller_products.class.php?delete=true",
                 data: "filename=" + name,
                 success: function(data) {
-                    console.log(data);
+                    console.log("eliminar");
                     $("#progress").hide();
                     $('.msg').text('').removeClass('msg_ok');
                     $('.msg').text('').removeClass('msg_error');
@@ -167,16 +167,16 @@ $(document).ready(function() {
                     if (json.res === true) {
                         var element;
                         if ((element = file.previewElement) != null) {
-                            //element.parentNode.removeChild(file.previewElement);
+                            element.parentNode.removeChild(file.previewElement);
                             //alert("Imagen eliminada: " + name);
-                            console.log("dentro2");
+                            //console.log("dentro2");
                         } else {
                             false;
                         }
                     } else { //json.res == false, elimino la imagen también
                         var element;
                         if ((element = file.previewElement) != null) {
-                            //element.parentNode.removeChild(file.previewElement);
+                            element.parentNode.removeChild(file.previewElement);
                         } else {
                             false;
                         }

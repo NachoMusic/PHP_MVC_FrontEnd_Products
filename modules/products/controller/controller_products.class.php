@@ -53,35 +53,35 @@ function alta_products() {
         $jsondata["success"] = false;
         $jsondata["error"] = $result['error'];
         //future avatar error
-        
+
         header('HTTP/1.0 400 Bad error');
         echo json_encode($jsondata);
     }
 }
 
 if (isset($_GET["delete"]) && $_GET["delete"] == true) {
-    
     $result = remove_files();
-    echo json_encode($result);
-    exit;
-    /*$_SESSION['result_avatar'] = array();
+    //echo json_encode($result);
+    //exit;
+
+    $_SESSION['result_avatar'] = array();
     $result = remove_files();
     if ($result === true) {
         echo json_encode(array("res" => true));
     } else {
         echo json_encode(array("res" => false));
-    }*/
+    }
     //echo remove_files();
    // echo remove_files();
-    
-    
+
+
 }
 
 /*include 'modules/products/utils/functions_user.inc.php';
 if ($_POST) {
 
     $result = validate_user();
-    
+
     //$_SESSION=$_POST;
     //console_log($result['resultado']);
     if ($result['resultado']) {
@@ -101,7 +101,7 @@ if ($_POST) {
         //redirigir a otra p�gina con los datos de $arrArgument y $mensaje
         $_SESSION['product'] = $arrArgument;
         $_SESSION['msje'] = $mensaje;
-    
+
         $callback = "index.php?module=products&view=results_products";
         redirect($callback);
     } else {
