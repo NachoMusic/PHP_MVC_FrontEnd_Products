@@ -35,8 +35,8 @@ function validate_product($value) {
     $result = filter_var_array($value, $filter);
 
     //no filter
-    $result['product_categoty'] = $_POST['product_categoty'];
-    $result['availability'] = $_POST['availability'];
+    $result['product_categoty'] = $value['product_categoty'];
+    $result['availability'] = $value['availability'];
 
     //obsolescence date can't be before enter date
     $dates = validate_dates($result['enter_date'], $result['obsolescence_date']);
@@ -44,41 +44,41 @@ function validate_product($value) {
         $error['obsolescence_date'] = "Obsolescence date can't be before enter date";
         $valido = false;
     }
-    //
-    // if (!$result['product_name']) {
-    //     $error['name'] = 'Name must be 2 to 30 letters';
-    //     $valido = false;
-    // }
-    // if (count($result['availability']) == 0) {
-    //     console_log("dentro");
-    //     $error['availability'] = "Select 1 or more.";
-    //     $valido = false;
-    // }
 
-    // if (!$result['enter_date']) {
-    //     if ($_POST['enter_date'] == "") {
-    //         $error['enter_date'] = "this camp can't empty";
-    //         $valido = false;
-    //     } else {
-    //         $error['enter_date'] = 'error format date (dd/mm/yyyy)';
-    //         $valido = false;
-    //     }
-    // }
+    if (!$result['product_name']) {
+        $error['name'] = 'Name must be 2 to 30 letters';
+        $valido = false;
+    }
+    if (count($result['availability']) == 0) {
+        console_log("dentro");
+        $error['availability'] = "Select 1 or more.";
+        $valido = false;
+    }
 
-    // if (!$result['obsolescence_date']) {
-    //     if ($_POST['obsolescence_date'] == "") {
-    //         $error['obsolescence_date'] = "this camp can't empty";
-    //         $valido = false;
-    //     } else {
-    //         $error['obsolescence_date'] = 'error format date (dd/mm/yyyy)';
-    //         $valido = false;
-    //     }
-    // }
+    if (!$result['enter_date']) {
+        if ($_POST['enter_date'] == "") {
+            $error['enter_date'] = "enter date can't be empty";
+            $valido = false;
+        } else {
+            $error['enter_date'] = 'format date error (dd/mm/yyyy)';
+            $valido = false;
+        }
+    }
 
-    /*if ($_POST['product_categoty'] === 'Select product') {
+    if (!$result['obsolescence_date']) {
+        if ($_POST['obsolescence_date'] == "") {
+            $error['obsolescence_date'] = "obsolescence date can't empty";
+            $valido = false;
+        } else {
+            $error['obsolescence_date'] = 'format date error (dd/mm/yyyy)';
+            $valido = false;
+        }
+    }
+
+    if ($_POST['product_categoty'] === 'Select product') {
         $error['product_categoty'] = "You haven't select a product.";
         $valido = false;
-    }*/
+    }
 
     return $return = array('resultado' => $valido, 'error' => $error, 'datos' => $result);
 }
