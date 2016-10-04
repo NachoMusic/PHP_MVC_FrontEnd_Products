@@ -135,11 +135,13 @@ $(document).ready(function() {
             this.on("success", function(file, response) {
                 //alert(response);
                 console.log(response);
-                /*$("#progress").show();
+                $("#progress").show();
                 $("#bar").width('100%');
                 $("#percent").html('100%');
                 $('.msg').text('').removeClass('msg_error');
-                $('.msg').text('Success Upload image!!').addClass('msg_ok').animate({'right': '300px'}, 300);*/
+                $('.msg').text('Success Upload image!!').addClass('msg_ok').animate({
+                    'right': '300px'
+                }, 300);
             });
         },
         complete: function(file) {
@@ -236,7 +238,7 @@ function validate_product() {
             j++;
         }
     }
-
+    console.log(product_availability);
     var email_reg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
     var date_reg = /(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((175[7-9])|(17[6-9][0-9])|(1[8-9][0-9][0-9])|([2-9][0-9][0-9][0-9]))/i;
     var address_reg = /^[a-z0-9- -.]+$/i;
@@ -245,6 +247,7 @@ function validate_product() {
     var longstring_reg = /^[A-Za-z]{2,300}$/;
     var usr_reg = /^[0-9a-zA-Z]{2,20}$/;
     var number_reg = /^\d+$/;
+
     //$(".error").remove();
     if ($("#product_name").val() === "" || $("#product_name").val() == "Introduce name") {
         $("#product_name").focus().after("<span class='error'>Introduce name</span>");
@@ -325,14 +328,14 @@ function validate_product() {
                 alta_products_json: data_products_JSON
             },
             function(response) {
-                console.log("fuera");
-                response.success = true;
-                console.log(response.success);
-
-                if (response.success) {
-                    window.location.href = response.redirect;
-                    console.log("dentro");
-                }
+                console.log("antes");
+                //response.success = true;
+                //console.log(response.success);
+                /*
+                                if (response.success) {
+                                    window.location.href = response.redirect;
+                                    console.log("dentro");
+                                }*/
                 //console.log(response);
                 //alert(response);  //para debuguear
             }

@@ -78,8 +78,8 @@ function upload_files() {
     $upfile = $_SERVER['DOCUMENT_ROOT'] . '/nacho_framework2DAW/media/' . $_FILES['avatar']['name'];
     if (is_uploaded_file($_FILES['file']['tmp_name'])) {
         if (is_file($_FILES['file']['tmp_name'])) {
-            $idUnico = rand();
-            $nombreFichero = $idUnico . "-" . $_FILES['file']['name'];
+            //$idUnico = rand();
+            $nombreFichero = /*$idUnico . "-" . */$_FILES['file']['name'];
             $copiarFichero = true;
             // I use absolute route to move_uploaded_file because this happens when i run ajax
             $upfile = $_SERVER['DOCUMENT_ROOT'] . '/nacho_framework2DAW/media/' . $nombreFichero;
@@ -109,5 +109,11 @@ function upload_files() {
 }
 
 function remove_files() {
-    return json_encode("Borrar imagen");
+    $name = $_POST["filename"];
+    if(file_exists($_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/media/'.$name)){
+        unlink($_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/media/'.$name);
+        return true;
+    }else{
+        return false;
+    }
 }
