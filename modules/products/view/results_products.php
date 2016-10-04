@@ -1,3 +1,4 @@
+<script type="text/javascript" src="modules/products/view/js/list_products.js" ></script>
 <form>
     <h1>Insert a product</h1>
 
@@ -41,26 +42,3 @@
 
     </fieldset>
 </form>
-
-<?php
-//debugPHP($_SESSION);
-/*$product = $_SESSION;
-foreach ($product as $indice => $valor) {
-    echo "<br><b>$indice</b>: $valor";
-}
-*/
-$product = $_SESSION['product'];
-$msage = $_SESSION['msje'];
-
-foreach ($product as $indice => $valor) {
-    if ($indice == 'availability') {
-        echo "<br><b>Interests:</b><br>";
-        $availability = $product['availability'];
-        foreach ($availability as $indice => $valor) {
-            echo "<b>---> $indice</b>: $valor<br>";
-        }
-    } else {
-        echo "<br><b>$indice</b>: $valor";
-    }
-}
-echo "<br>" . "<b style='color:green'>" . $msage;

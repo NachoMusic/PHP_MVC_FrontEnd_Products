@@ -329,19 +329,62 @@ function validate_product() {
             },
             function(response) {
                 //console.log(typeof(response));
-                var responseObj = JSON.parse(response); //I convert the string to a object!
+                //var responseObj = JSON.parse(response); //I convert the string to a object!
                 //console.log(typeof(responseObj));
                 //console.log(responseObj);
-                if (responseObj.success) {
-                    window.location.href = responseObj.redirect;
+                if (response.success) {
+                    window.location.href = response.redirect;
                     //console.log("dentro");
                 }
-                //console.log(response);
-                //alert(response);  //para debuguear
+
+            }, "json").fail(function(xhr) {
+            //console.log(xhr.responseJSON);
+            if (xhr.responseJSON.error.product_name)
+                $("#product_name").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_name + "</span>");
+
+            if (xhr.responseJSON.error.product_description)
+                $("#product_description").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_description + "</span>");
+
+            if (xhr.responseJSON.error.product_price)
+                $("#product_price").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_price + "</span>");
+
+            if (xhr.responseJSON.error.product_id)
+                $("#product_id").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_id + "</span>");
+
+            if (xhr.responseJSON.error.enter_date)
+                $("#enter_date").focus().after("<span  class='error1'>" + xhr.responseJSON.error.enter_date + "</span>");
+
+            if (xhr.responseJSON.error.obsolescence_date)
+                $("#obsolescence_date").focus().after("<span  class='error1'>" + xhr.responseJSON.error.obsolescence_date + "</span>");
+
+            if (xhr.responseJSON.error.product_category)
+                $("#product_category").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_category + "</span>");
+
+            if (xhr.responseJSON.error.availability)
+                $("#availability").focus().after("<span  class='error1'>" + xhr.responseJSON.error.availability + "</span>");
+
+            if (xhr.responseJSON.error_avatar)
+                $("#dropzone").focus().after("<span  class='error1'>" + xhr.responseJSON.error_avatar + "</span>");
+
+            if (xhr.responseJSON.success1) {
+                if (xhr.responseJSON.img_avatar !== "/nacho_framework2DAW/media/default-avatar.png") {
+                    //$("#progress").show();
+                    //$("#bar").width('100%');
+                    //$("#percent").html('100%');
+                    //$('.msg').text('').removeClass('msg_error');
+                    //$('.msg').text('Success Upload image!!').addClass('msg_ok').animate({ 'right' : '300px' }, 300);
+                }
+            } else {
+                $("#progress").hide();
+                $('.msg').text('').removeClass('msg_ok');
+                $('.msg').text('Error Upload image!!').addClass('msg_error').animate({
+                    'right': '300px'
+                }, 300);
             }
+        });
 
 
-        ); //para debuguear
+        //);
 
     }
     //$("#form_product").submit();
