@@ -47,7 +47,7 @@ function alta_products() {
         $jsondata["success"] = true;
         $jsondata["redirect"] = $callback;
         echo json_encode($jsondata);
-        exit;
+        //exit;
     } else {
         //console_log("false");
         $jsondata["success"] = false;

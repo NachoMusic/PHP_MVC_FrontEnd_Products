@@ -32,18 +32,18 @@ function validate_product($value) {
     );
 
 
-    $result = filter_input_array($value, $filter);
+    $result = filter_var_array($value, $filter);
 
     //no filter
     $result['product_categoty'] = $_POST['product_categoty'];
     $result['availability'] = $_POST['availability'];
 
     //obsolescence date can't be before enter date
-    /*$dates = validate_dates($_POST['enter_date'], $_POST['obsolescence_date']);
+    $dates = validate_dates($result['enter_date'], $result['obsolescence_date']);
     if (!$dates) {
         $error['obsolescence_date'] = "Obsolescence date can't be before enter date";
         $valido = false;
-    }*/
+    }
     //
     // if (!$result['product_name']) {
     //     $error['name'] = 'Name must be 2 to 30 letters';

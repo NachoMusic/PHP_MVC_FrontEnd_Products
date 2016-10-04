@@ -4,25 +4,25 @@
     <fieldset>
         <legend><span class="number">1</span>Product's basic info</legend>
         <label for="name">Name:</label>
-        <input type="text" id="product_name" disabled="true" value=<?php echo $_SESSION["product_name"] ?>>
+        <input type="text" id="product_name" disabled="true">
 
         <label for="description">Description:</label>
-        <textarea id="description" disabled="true" name="product_description"><?php echo $_SESSION["product_description"] ?></textarea>
+        <textarea id="description" disabled="true" name="product_description"></textarea>
 
         <label for="price">Price:</label>
-        <input type="text" id="price" disabled="true" name="product_price" value=<?php echo $_SESSION["product_price"] ?>>
+        <input type="text" id="price" disabled="true" name="product_price">
 
         <label for="id">ID:</label>
-        <input type="text" id="id" disabled="true" name="product_id" value=<?php echo $_SESSION["product_id"] ?>>
+        <input type="text" id="id" disabled="true" name="product_id">
 
     </fieldset>
 
     <fieldset>
         <legend><span class="number">2</span>Product's profile</legend>
         <label>Enter Date:</label>
-        <input type="text" name="enter_date" disabled="true" value="<?php echo $_SESSION["enter_date"] ?>">
+        <input type="text" name="enter_date" disabled="true">
         <label>Obsolescence date:</label>
-        <input type="text" name="obsolescence_date" disabled="true" value="<?php echo $_SESSION["obsolescence_date"] ?>">
+        <input type="text" name="obsolescence_date" disabled="true">
     </fieldset>
     <fieldset>
         <label for="product_categoty">Category:</label>
@@ -33,7 +33,7 @@
             <option value="SingleCut">SingleCut</option>
             <option value="DoubleCut">DoubleCut</option>
         </select>
-        
+
         <label>Availability:</label>
         Web <input type="checkbox" name="availability[]" value="Web">
         Warehouse  <input type="checkbox" name="availability[]" value="Warehouse">

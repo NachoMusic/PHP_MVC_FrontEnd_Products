@@ -238,7 +238,7 @@ function validate_product() {
             j++;
         }
     }
-    console.log(product_availability);
+
     var email_reg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
     var date_reg = /(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((175[7-9])|(17[6-9][0-9])|(1[8-9][0-9][0-9])|([2-9][0-9][0-9][0-9]))/i;
     var address_reg = /^[a-z0-9- -.]+$/i;
@@ -328,14 +328,14 @@ function validate_product() {
                 alta_products_json: data_products_JSON
             },
             function(response) {
-                console.log("antes");
-                //response.success = true;
-                //console.log(response.success);
-                /*
-                                if (response.success) {
-                                    window.location.href = response.redirect;
-                                    console.log("dentro");
-                                }*/
+                //console.log(typeof(response));
+                var responseObj = JSON.parse(response); //I convert the string to a object!
+                //console.log(typeof(responseObj));
+                //console.log(responseObj);
+                if (responseObj.success) {
+                    window.location.href = responseObj.redirect;
+                    //console.log("dentro");
+                }
                 //console.log(response);
                 //alert(response);  //para debuguear
             }
