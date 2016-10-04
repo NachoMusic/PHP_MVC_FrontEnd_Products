@@ -1,4 +1,5 @@
 <?php
+session_start();
 include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/modules/products/utils/functions_product.inc.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/upload.php");
 
@@ -13,19 +14,18 @@ if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
 
 if ((isset($_POST['alta_products_json']))) {
     //echo json_encode("Hola mundo");
-    //alta_products();
-    echo validate_prouct();
+    alta_products();
+    //echo validate_prouct();
 }
 
 function alta_products() {
     $jsondata = array();
-    //console_log("02");
     $productsJSON = json_decode($_POST["alta_products_json"], true);
 
     $result = validate_product($productsJSON);
 
     if ($result['resultado']) {
-        //console_log("dentro");
+
         $arrArgument = array(
             'product_name' => ucfirst($result['datos']['product_name']),
             'product_description' => ucfirst($result['datos']['product_description']),

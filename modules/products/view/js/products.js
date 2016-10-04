@@ -166,7 +166,7 @@ $(document).ready(function() {
                     var json = JSON.parse(data);
                     if (json.res === true) {
                         var element;
-                        if ((element = file.previewElement) != null) {
+                        if ((element = file.previewElement) !== null) {
                             element.parentNode.removeChild(file.previewElement);
                             //alert("Imagen eliminada: " + name);
                             //console.log("dentro2");
@@ -175,7 +175,7 @@ $(document).ready(function() {
                         }
                     } else { //json.res == false, elimino la imagen también
                         var element;
-                        if ((element = file.previewElement) != null) {
+                        if ((element = file.previewElement) !== null) {
                             element.parentNode.removeChild(file.previewElement);
                         } else {
                             false;
@@ -246,7 +246,7 @@ function validate_product() {
     var usr_reg = /^[0-9a-zA-Z]{2,20}$/;
     var number_reg = /^\d+$/;
     //$(".error").remove();
-    if ($("#product_name").val() == "" || $("#product_name").val() == "Introduce name") {
+    if ($("#product_name").val() === "" || $("#product_name").val() == "Introduce name") {
         $("#product_name").focus().after("<span class='error'>Introduce name</span>");
         result = false;
         return false;
@@ -256,7 +256,7 @@ function validate_product() {
         return false;
     }
 
-    if ($("#product_description").val() == "") {
+    if ($("#product_description").val() === "") {
         $("#product_description").focus().after("<span class='error'>Introduce the product description</span>");
         result = false;
         return false;
@@ -266,7 +266,7 @@ function validate_product() {
         return false;
     }
 
-    if ($("#product_price").val() == "" || $("#product_price").val() == "Introduce price") {
+    if ($("#product_price").val() === "" || $("#product_price").val() == "Introduce price") {
         $("#product_name").focus().after("<span class='error'>Introduce price</span>");
         result = false;
         return false;
@@ -276,7 +276,7 @@ function validate_product() {
         return false;
     }
 
-    if ($("#product_id").val() == "" || $("#product_id").val() == "Introduce product id") {
+    if ($("#product_id").val() === "" || $("#product_id").val() == "Introduce product id") {
         $("#product_id").focus().after("<span class='error'>Introduce product id</span>");
         result = false;
         return false;
@@ -286,7 +286,7 @@ function validate_product() {
         return false;
     }
 
-    if ($("#enter_date").val() == "" || $("#enter_date").val() == "Introduce entering date") {
+    if ($("#enter_date").val() === "" || $("#enter_date").val() == "Introduce entering date") {
         $("#enter_date").focus().after("<span class='error'>Introduce entering date</span>");
         result = false;
         return false;
@@ -296,7 +296,7 @@ function validate_product() {
         return false;
     }
 
-    if ($("#obsolescence_date").val() == "" || $("#obsolescence_date").val() == "Introduce obsolescence date") {
+    if ($("#obsolescence_date").val() === "" || $("#obsolescence_date").val() == "Introduce obsolescence date") {
         $("#obsolescence_date").focus().after("<span class='error'>Introduce obsolescence date</span>");
         result = false;
         return false;
@@ -325,16 +325,22 @@ function validate_product() {
                 alta_products_json: data_products_JSON
             },
             function(response) {
+                console.log("fuera");
+                response.success = true;
+                console.log(response.success);
+
                 if (response.success) {
                     window.location.href = response.redirect;
+                    console.log("dentro");
                 }
-                console.log(response);
+                //console.log(response);
                 //alert(response);  //para debuguear
-            }); //para debuguear
+            }
+
+
+        ); //para debuguear
 
     }
-
-
     //$("#form_product").submit();
     //$("#form_product").attr("action", "index.php?module=users");
 }
