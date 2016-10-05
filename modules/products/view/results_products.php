@@ -1,4 +1,5 @@
-<script type="text/javascript" src="modules/products/view/js/list_products.js" ></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script> -->
+<!--<script type="text/javascript" src="modules/products/view/js/list_products.js" ></script>-->
 <form>
     <h1>Insert a product</h1>
 
@@ -21,9 +22,9 @@
     <fieldset>
         <legend><span class="number">2</span>Product's profile</legend>
         <label>Enter Date:</label>
-        <input type="text" name="enter_date" disabled="true">
+        <input type="text" disabled="true">
         <label>Obsolescence date:</label>
-        <input type="text" name="obsolescence_date" disabled="true">
+        <input type="text" disabled="true">
     </fieldset>
     <fieldset>
         <label for="product_categoty">Category:</label>
@@ -40,5 +41,9 @@
         Warehouse  <input type="checkbox" name="availability[]" value="Warehouse">
         Physical_store  <input type="checkbox" name="availability[]" value="Physical_store">
 
+    </fieldset>
+    <fieldset>
+        <div id="content"></div>
+        <script type="text/javascript" src="modules/products/view/js/list_products.js" ></script>
     </fieldset>
 </form>

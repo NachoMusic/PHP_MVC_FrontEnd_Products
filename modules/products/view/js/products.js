@@ -387,6 +387,5 @@ function validate_product() {
         //);
 
     }
-    //$("#form_product").submit();
-    //$("#form_product").attr("action", "index.php?module=users");
+
 }

@@ -24,6 +24,14 @@ function alta_products() {
 
     $result = validate_product($productsJSON);
 
+
+    if (empty($_SESSION['result_avatar'])) {
+        $_SESSION['result_avatar'] = array('resultado' => true, 'error' => "", 'datos' => 'media/default-avatar.png');
+    }
+
+    $result_avatar = $_SESSION['result_avatar'];
+    
+
     if ($result['resultado']) {
 
         $arrArgument = array(
@@ -43,11 +51,10 @@ function alta_products() {
         $_SESSION['msje'] = $mensaje;
 
         $callback = "index.php?module=products&view=results_products";
-
+        //$jsondata['product'] = $arrArgument;
         $jsondata["success"] = true;
         $jsondata["redirect"] = $callback;
         echo json_encode($jsondata);
-        //exit;
     } else {
         //console_log("false");
         $jsondata["success"] = false;
@@ -73,40 +80,27 @@ if (isset($_GET["delete"]) && $_GET["delete"] == true) {
     }
     //echo remove_files();
    // echo remove_files();
-
-
 }
 
-/*include 'modules/products/utils/functions_user.inc.php';
-if ($_POST) {
-
-    $result = validate_user();
-
-    //$_SESSION=$_POST;
-    //console_log($result['resultado']);
-    if ($result['resultado']) {
-        $arrArgument = array(
-            'product_name' => ucfirst($result['datos']['product_name']),
-            'product_description' => ucfirst($result['datos']['product_description']),
-            'product_price' => $result['datos']['product_price'],
-            'product_id' => $result['datos']['product_id'],
-            'enter_date' => $result['datos']['enter_date'],
-            'obsolescence_date' => $result['datos']['obsolescence_date'],
-            'product_categoty' => $result['datos']['product_categoty'],
-            'availability' => $result['datos']['availability'],
-        );
-
-        $mensaje = "User has been successfully registered";
-
-        //redirigir a otra p�gina con los datos de $arrArgument y $mensaje
-        $_SESSION['product'] = $arrArgument;
-        $_SESSION['msje'] = $mensaje;
-
-        $callback = "index.php?module=products&view=results_products";
-        redirect($callback);
-    } else {
-        $error = $result['error'];
-        echo "<script>console.log('error')</script>";
+///////////////////////////// Load data //////////////////////////////////
+if (isset($_GET["load"]) && $_GET["load"] == true) {
+    $jsondata = array();
+    if (isset($_SESSION['product'])) {
+        //echo debug($_SESSION['user']);
+        $jsondata["product"] = $_SESSION['product'];
     }
+    if (isset($_SESSION['msje'])) {
+        //echo $_SESSION['msje'];
+        $jsondata["msje"] = $_SESSION['msje'];
+    }
+    close_session();
+    echo json_encode($jsondata);
+    exit;
 }
-include 'modules/products/view/create_products.php';*/
+
+function close_session() {
+    unset($_SESSION['user']);
+    unset($_SESSION['msje']);
+    $_SESSION = array(); // Destruye todas las variables de la sesión
+    session_destroy(); // Destruye la sesión
+}
