@@ -10,7 +10,7 @@ function load_users_ajax() {
 
         //alert(json.user.usuario);
 
-        pintar_user(json);
+        pintar_product(json);
 
     }).fail(function(xhr) {
         alert(xhr.responseText);
@@ -24,7 +24,7 @@ function load_users_get_v1() {
         //$( "#content" ).html( json.msje );
         //alert("Data: " + json.user.usuario + "\nStatus: " + status);
 
-        pintar_user(json);
+        pintar_product(json);
     });
 }
 
@@ -33,7 +33,7 @@ function load_users_get_v2() {
     var jqxhr = $.get("modules/products/controller/controller_products.class.php?load=true", function(data) {
         var json = JSON.parse(data);
         console.log(json);
-        pintar_user(json);
+        pintar_product(json);
         //alert( "success" );
     }).done(function() {
         //alert( "second success" );
@@ -51,12 +51,10 @@ function load_users_get_v2() {
 $(document).ready(function() {
     //load_users_ajax();
     //load_users_get_v1();
-    //console.log("entra");
     load_users_get_v2();
 });
 
-function pintar_user(data) {
-    //alert(data.user.avatar);
+function pintar_product(data) {
     var content = document.getElementById("content");
     var div_product = document.createElement("div");
     var parrafo = document.createElement("p");
@@ -101,7 +99,7 @@ function pintar_user(data) {
 
     //arreglar ruta IMATGE!!!!!
 
-    var cad = data.product.avatar;
+    var cad = data.avatar.datos;
     //console.log(cad);
     //var cad = cad.toLowerCase();
     var img = document.createElement("div");

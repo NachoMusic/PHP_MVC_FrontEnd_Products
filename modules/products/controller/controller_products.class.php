@@ -6,6 +6,7 @@ include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/upload.php");
 if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
    // echo upload_files();
     $result_avatar = upload_files();
+    $_SESSION["result_avatar"] = $result_avatar;
     echo json_encode($result_avatar);
     exit;
     //$_SESSION['result_avatar'] = $result_avatar;
@@ -25,12 +26,11 @@ function alta_products() {
     $result = validate_product($productsJSON);
 
 
-    if (empty($_SESSION['result_avatar'])) {
+    if ($_SESSION['result_avatar']['datos'] == "") {
         $_SESSION['result_avatar'] = array('resultado' => true, 'error' => "", 'datos' => 'media/default-avatar.png');
     }
-
     $result_avatar = $_SESSION['result_avatar'];
-    
+
 
     if ($result['resultado']) {
 
@@ -93,6 +93,7 @@ if (isset($_GET["load"]) && $_GET["load"] == true) {
         //echo $_SESSION['msje'];
         $jsondata["msje"] = $_SESSION['msje'];
     }
+    $jsondata["avatar"] = $_SESSION["result_avatar"];
     close_session();
     echo json_encode($jsondata);
     exit;
