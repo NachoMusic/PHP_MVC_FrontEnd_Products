@@ -41,7 +41,7 @@ function alta_products() {
             'product_id' => $result['datos']['product_id'],
             'enter_date' => $result['datos']['enter_date'],
             'obsolescence_date' => $result['datos']['obsolescence_date'],
-            'product_categoty' => $result['datos']['product_categoty'],
+            'product_category' => $result['datos']['product_category'],
             'availability' => $result['datos']['availability'],
         );
 

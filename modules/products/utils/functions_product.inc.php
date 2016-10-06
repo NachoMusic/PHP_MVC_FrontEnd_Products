@@ -35,7 +35,7 @@ function validate_product($value) {
     $result = filter_var_array($value, $filter);
 
     //no filter
-    $result['product_categoty'] = $value['product_categoty'];
+    $result['product_category'] = $value['product_category'];
     $result['availability'] = $value['availability'];
 
     //obsolescence date can't be before enter date
@@ -75,8 +75,8 @@ function validate_product($value) {
         }
     }
 
-    if ($_POST['product_categoty'] === 'Select product') {
-        $error['product_categoty'] = "You haven't select a product.";
+    if ($_POST['product_category'] === 'Select product') {
+        $error['product_category'] = "You haven't select a product.";
         $valido = false;
     }
 

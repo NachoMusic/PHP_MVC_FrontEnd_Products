@@ -36,7 +36,7 @@
         <div id="e_obsolescence_date"></div>
     </fieldset>
     <fieldset>
-        <label for="product_categoty">Category:</label>
+        <label for="product_category">Category:</label>
         <select name="product_category" id="product_category">
             <option selected>Select product</option>
             <option value="Stratocaster">Stratocaster</option>

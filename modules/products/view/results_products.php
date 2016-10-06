@@ -27,8 +27,8 @@
         <input type="text" disabled="true">
     </fieldset>
     <fieldset>
-        <label for="product_categoty">Category:</label>
-        <select name="product_categoty" id="product_categoty">
+        <label for="product_category">Category:</label>
+        <select name="product_category" id="product_category">
             <option selected>Select product</option>
             <option value="Stratocaster">Stratocaster</option>
             <option value="Telecaster">Telecaster</option>

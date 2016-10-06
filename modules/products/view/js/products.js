@@ -331,7 +331,7 @@ function validate_product() {
                 //console.log(typeof(response));
                 //var responseObj = JSON.parse(response); //I convert the string to a object!
                 //console.log(typeof(responseObj));
-                //console.log(responseObj);
+                //onsole.log(response.product.product_category);
                 if (response.success) {
                     window.location.href = response.redirect;
                     //console.log("dentro");
