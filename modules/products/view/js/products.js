@@ -107,7 +107,7 @@ $(document).ready(function() {
         });
     });
 
-    $(this).fill_or_clean();
+    //$(this).fill_or_clean();
 
 
     var email_reg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
@@ -123,6 +123,45 @@ $(document).ready(function() {
     $("#submit_product").click(function() {
         validate_product();
     });
+
+    //Security control. If you go back the data is removed.
+    $.get("modules/products/controller/controller_products.class.php?load_data=true",
+        function(response) {
+            //alert(response.user);
+            console.log(response);
+            if (response.product === "") {
+                $("#product_name").val('');
+                $("#product_description").val('');
+                $("#product_price").val('');
+                $("#product_id").val('');
+                $("#enter_date").val('');
+                $("#obsolescence_date").val('');
+                $("#product_category").val('Select product');
+                var inputElements = document.getElementsByClassName('availability');
+                for (var i = 0; i < inputElements.length; i++) {
+                    if (inputElements[i].checked) {
+                        inputElements[i].checked = false;
+                    }
+                }
+                //siempre que creemos un plugin debemos llamarlo, sino no funcionará
+                $(this).fill_or_clean();
+            } else {
+                // $("#product_name").val(response.product.product_name);
+                // $("#product_description").val(response.product.product_description);
+                // $("#product_price").val(response.product.product_price);
+                // $("#product_id").val(response.product.product_id);
+                // $("#enter_date").val(response.product.enter_date);
+                // $("#obsolescence_date").val(response.product.obsolescence_date);
+                /*
+                var inputElements = document.getElementsByClassName('messageCheckbox');
+                for (var i = 0; i < interests.length; i++) {
+                    for (var j = 0; j < inputElements.length; j++) {
+                        if (interests[i] === inputElements[j])
+                            inputElements[j].checked = true;
+                    }
+                }*/
+            }
+        }, "json");
 
     //Dropzone function //////////////////////////////////
     $("#dropzone").dropzone({

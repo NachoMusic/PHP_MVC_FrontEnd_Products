@@ -45,7 +45,7 @@ function alta_products() {
             'availability' => $result['datos']['availability'],
         );
 
-        $mensaje = "User has been successfully registered";
+        $mensaje = "Product has been successfully registered";
         //redirigir a otra pagina con los datos de $arrArgument y $mensaje
         $_SESSION['product'] = $arrArgument;
         $_SESSION['msje'] = $mensaje;
@@ -100,8 +100,23 @@ if (isset($_GET["load"]) && $_GET["load"] == true) {
 }
 
 function close_session() {
-    unset($_SESSION['user']);
+    unset($_SESSION['product']);
     unset($_SESSION['msje']);
     $_SESSION = array(); // Destruye todas las variables de la sesión
     session_destroy(); // Destruye la sesión
+}
+
+//////////////// load_data (deletes the form when you go back) ////////////////
+if ((isset($_GET["load_data"])) && ($_GET["load_data"] == true)) {
+    $jsondata = array();
+
+    if (isset($_SESSION['product'])) {
+        $jsondata["product"] = $_SESSION['product'];
+        echo json_encode($jsondata);
+        exit;
+    } else {
+        $jsondata["product"] = "";
+        echo json_encode($jsondata);
+        exit;
+    }
 }
