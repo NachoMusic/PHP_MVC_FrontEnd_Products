@@ -2,6 +2,7 @@
 session_start();
 include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/modules/products/utils/functions_product.inc.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/upload.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/common.inc.php"); 
 
 if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
    // echo upload_files();
