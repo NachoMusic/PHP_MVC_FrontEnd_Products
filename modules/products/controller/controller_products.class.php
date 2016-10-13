@@ -2,14 +2,14 @@
 session_start();
 include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/modules/products/utils/functions_product.inc.php");
 include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/upload.php");
-include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/common.inc.php"); 
+include ($_SERVER['DOCUMENT_ROOT'] . "/nacho_framework2DAW/utils/common.inc.php");
 
 if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
    // echo upload_files();
     $result_avatar = upload_files();
     $_SESSION["result_avatar"] = $result_avatar;
-    echo json_encode($result_avatar);
-    exit;
+    //echo json_encode($result_avatar);
+    //exit;
     //$_SESSION['result_avatar'] = $result_avatar;
     //echo debug($_SESSION['result_avatar']); //se mostraría en alert(response); de dropzone.js
 }
@@ -27,13 +27,13 @@ function alta_products() {
     $result = validate_product($productsJSON);
 
 
-    if ($_SESSION['result_avatar']['datos'] == "") {
+    if (empty($_SESSION['result_avatar'])) {
         $_SESSION['result_avatar'] = array('resultado' => true, 'error' => "", 'datos' => 'media/default-avatar.png');
     }
     $result_avatar = $_SESSION['result_avatar'];
 
 
-    if ($result['resultado']) {
+    if ($result['resultado'] && ($result_avatar['resultado'])) {
 
         $arrArgument = array(
             'product_name' => ucfirst($result['datos']['product_name']),
