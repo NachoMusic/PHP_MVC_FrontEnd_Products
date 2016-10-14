@@ -369,16 +369,15 @@ function validate_product() {
             function(response) {
                 //console.log(typeof(response));
                 //var responseObj = JSON.parse(response); //I convert the string to a object!
-                //console.log(typeof(responseObj));
+                //console.log(response);
                 //onsole.log(response.product.product_category);
                 if (response.success) {
                     window.location.href = response.redirect;
-                    //console.log("dentro");
                 }
 
             }, "json").fail(function(xhr) {
             //console.log(xhr.responseJSON);
-            if (xhr.responseJSON.error.product_name)
+            /*if (xhr.responseJSON.error.product_name)
                 $("#product_name").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_name + "</span>");
 
             if (xhr.responseJSON.error.product_description)
@@ -419,7 +418,7 @@ function validate_product() {
                 $('.msg').text('Error Upload image!!').addClass('msg_error').animate({
                     'right': '300px'
                 }, 300);
-            }
+            }*/
         });
 
 

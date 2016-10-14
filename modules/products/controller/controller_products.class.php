@@ -46,7 +46,18 @@ function alta_products() {
             'availability' => $result['datos']['availability'],
         );
 
-        $mensaje = "Product has been successfully registered";
+        ///////////// Insert into BD /////////////
+        $arrValue = false;
+        $path_model = $_SERVER['DOCUMENT_ROOT'] . '/nacho_framework2DAW/modules/products/model/model/';
+        $arrValue = loadModel($path_model, "product_model", "create_product", $arrArgument);
+        /*echo json_encode($arrValue . "asdf");
+        exit;*/
+        //$mensaje = "Product has been successfully registered";
+        if ($arrValue)
+            $mensaje = "Product has been successfully registered";
+        else
+            $mensaje = "Error in the register process. Try it later.";
+
         //redirigir a otra pagina con los datos de $arrArgument y $mensaje
         $_SESSION['product'] = $arrArgument;
         $_SESSION['msje'] = $mensaje;
