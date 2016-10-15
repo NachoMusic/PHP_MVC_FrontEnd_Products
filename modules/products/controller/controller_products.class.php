@@ -55,8 +55,8 @@ function alta_products() {
             $mensaje = "Product has been successfully registered";
         else
             $mensaje = "Error in the register process. Try it later.";
-        echo json_encode("asdf" . $mensaje);
-        exit;
+        // echo json_encode("asdf" . $mensaje);
+        // exit;
         //redirigir a otra pagina con los datos de $arrArgument y $mensaje
         $_SESSION['product'] = $arrArgument;
         $_SESSION['msje'] = $mensaje;

@@ -22,8 +22,8 @@ class productDAO {
         $obsolescence_date = $arrArgument['obsolescence_date'];
         $product_category = $arrArgument['product_category'];
         $availability = $arrArgument['availability'];
-        //$avatar = $arrArgument['avatar'];
-        $avatar = "/fakelocation/untilIimplementIt.png";
+        $avatar = $_SESSION["nombre_fichero"];
+        // $avatar = "/fakelocation/untilIimplementIt.png";
 
         $web = 0;
         $warehouse = 0;

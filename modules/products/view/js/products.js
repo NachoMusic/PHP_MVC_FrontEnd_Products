@@ -369,11 +369,11 @@ function validate_product() {
             function(response) {
                 //console.log(typeof(response));
                 //var responseObj = JSON.parse(response); //I convert the string to a object!
-                console.log(response);
-                //onsole.log(response.product.product_category);
-                // if (response.success) {
-                //     window.location.href = response.redirect;
-                // }
+                // console.log(response);
+
+                if (response.success) {
+                    window.location.href = response.redirect;
+                }
 
             }, "json").fail(function(xhr) {
             //console.log(xhr.responseJSON);
