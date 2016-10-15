@@ -15,9 +15,8 @@ if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
 }
 
 if ((isset($_POST['alta_products_json']))) {
-    //echo json_encode("Hola mundo");
+    // echo json_encode("Hola mundo");
     alta_products();
-    //echo validate_prouct();
 }
 
 function alta_products() {
@@ -50,14 +49,14 @@ function alta_products() {
         $arrValue = false;
         $path_model = $_SERVER['DOCUMENT_ROOT'] . '/nacho_framework2DAW/modules/products/model/model/';
         $arrValue = loadModel($path_model, "product_model", "create_product", $arrArgument);
-        /*echo json_encode($arrValue . "asdf");
-        exit;*/
+
         //$mensaje = "Product has been successfully registered";
         if ($arrValue)
             $mensaje = "Product has been successfully registered";
         else
             $mensaje = "Error in the register process. Try it later.";
-
+        echo json_encode("asdf" . $mensaje);
+        exit;
         //redirigir a otra pagina con los datos de $arrArgument y $mensaje
         $_SESSION['product'] = $arrArgument;
         $_SESSION['msje'] = $mensaje;

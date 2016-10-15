@@ -37,15 +37,10 @@ class productDAO {
             if ($indice === 'Physical_store')
                 $physical_store = 1;
         }
-        /*
-        INSERT INTO products (product_name, product_description, product_price, product_id, enter_date, obsolescence_date, product_category, Web, Warehouse, Physical_store, avatar)
-        VALUES ('guitarra', 'description asdf asdf', '1500', '4982', '01/01/2016', '01/01/2018', 'SingleCut', '1','0','1','fakeroute/guitar.png')
-        */
-        $sql = "INSERT INTO products (product_name, product_description, product_price, product_id, enter_date, obsolescence_date, product_category, Web, Warehouse, Physical_store, avatar) VALUES ("
-        . $product_name . ", " . $product_description . ", " . $product_price . ", "
-        . $product_id . ", " . $enter_date . ", " . $obsolescence_date . ", "
-        . $product_category . ", " . $web . ", " . $warehouse . ", " . $physical_store . ", "
-        . $avatar . ")";
+
+        $sql = "INSERT INTO products (product_name, product_description, product_price, product_id, enter_date, obsolescence_date, product_category, Web, Warehouse, Physical_store, avatar) VALUES ('". $product_name
+        ."', '". $product_description ."', '". $product_price ."', '". $product_id ."' , '". $enter_date ."', '". $obsolescence_date
+        ."', '". $product_category ."', '". $web ."','". $warehouse ."', '". $physical_store ."' ,'". $avatar ."')";
 
         return $db->ejecutar($sql);
     }
