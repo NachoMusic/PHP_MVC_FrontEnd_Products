@@ -131,3 +131,23 @@ if ((isset($_GET["load_data"])) && ($_GET["load_data"] == true)) {
         exit;
     }
 }
+
+//////////// load_pais //////////////
+if(  (isset($_GET["load_pais"])) && ($_GET["load_pais"] == true)  ){
+    echo json_encode("Hello I'm here");
+    // $json = array();
+    //
+    // $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
+    //
+    // $path_model=$_SERVER['DOCUMENT_ROOT'].'/24G dependent_combo_webservices/pages/model/model/';
+    // $json = loadModel($path_model, "userModel", "obtain_paises", $url);
+    //
+    // if($json){
+    //     echo $json;
+    //     exit;
+    // }else{
+    //     $json = "error";
+    //     echo $json;
+    //     exit;
+    // }
+}

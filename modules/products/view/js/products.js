@@ -255,7 +255,124 @@ $(document).ready(function() {
         }
     });
 
+    // 3 combobox
+    load_countries_v1();
+    $("#provincia").empty();
+    $("#provincia").append('<option value="" selected="selected">Selecciona una Provincia</option>');
+    $("#provincia").prop('disabled', true);
+    $("#poblacion").empty();
+    $("#poblacion").append('<option value="" selected="selected">Selecciona una Poblacion</option>');
+    $("#poblacion").prop('disabled', true);
+
+    $("#pais").change(function() {
+        var pais = $(this).val();
+        var provincia = $("#provincia");
+        var poblacion = $("#poblacion");
+
+        if(pais !== 'ES'){
+            provincia.prop('disabled', true);
+            poblacion.prop('disabled', true);
+            $("#provincia").empty();
+            $("#poblacion").empty();
+        }else{
+            provincia.prop('disabled', false);
+            poblacion.prop('disabled', false);
+            load_provincias_v1();
+        }//fi else
+    });
+
+    $("#provincia").change(function() {
+        var prov = $(this).val();
+        if(prov > 0){
+            load_poblaciones_v1(prov);
+        }else{
+            $("#poblacion").prop('disabled', false);
+        }
+    });
 });
+
+function load_countries_v1() {
+    $.get( "modules/products/controller/controller_products.class.php?load_pais=true",
+        function( response ) {
+            // console.log(response);
+            // if(response === 'error'){
+                // load_countries_v2("resources/ListOfCountryNamesByName.json");
+            // }else{
+                load_countries_v2("modules/products/controller/controller_products.class.php?load_pais=true"); //oorsprong.org
+            // }
+    })
+    .fail(function(response) {
+        load_countries_v2("resources/ListOfCountryNamesByName.json");
+    });
+}
+
+function load_countries_v2(cad) {
+    $.getJSON( cad, function(data) {
+        $("#pais").empty();
+        $("#pais").append('<option value="" selected="selected">Selecciona un Pais</option>');
+        console.log(data);
+        // $.each(data, function (i, valor) {
+        //     $("#pais").append("<option value='" + valor.sISOCode + "'>" + valor.sName + "</option>");
+        // });
+    })
+    .fail(function() {
+        alert( "error load_countries" );
+    });
+}
+
+function load_provincias_v1() { //provinciasypoblaciones.xml - xpath
+    // $.get( "pages/controller_users.php?load_provincias=true",
+    // function( response ) {
+    //     $("#provincia").empty();
+    //     $("#provincia").append('<option value="" selected="selected">Selecciona una Provincia</option>');
+    //
+    //     //alert(response);
+    //     var json = JSON.parse(response);
+    //     var provincias=json.provincias;
+    //     //alert(provincias);
+    //     //console.log(provincias);
+    //
+    //     //alert(provincias[0].id);
+    //     //alert(provincias[0].nombre);
+    //
+    //     if(provincias === 'error'){
+    //         load_provincias_v2();
+    //     }else{
+    //         for (var i = 0; i < provincias.length; i++) {
+    //             $("#provincia").append("<option value='" + provincias[i].id + "'>" + provincias[i].nombre + "</option>");
+    //         }
+    //     }
+    // })
+    // .fail(function(response) {
+    //     load_provincias_v2();
+    // });
+}
+
+function load_poblaciones_v1(prov) { //provinciasypoblaciones.xml - xpath
+    // var datos = { idPoblac : prov  };
+    // $.post("pages/controller_users.php", datos, function(response) {
+    //     //alert(response);
+    //     var json = JSON.parse(response);
+    //     var poblaciones=json.poblaciones;
+    //     //alert(poblaciones);
+    //     //console.log(poblaciones);
+    //     //alert(poblaciones[0].poblacion);
+    //
+    //     $("#poblacion").empty();
+    //     $("#poblacion").append('<option value="" selected="selected">Selecciona una Poblacion</option>');
+    //
+    //     if(poblaciones === 'error'){
+    //         load_poblaciones_v2(prov);
+    //     }else{
+    //         for (var i = 0; i < poblaciones.length; i++) {
+    //             $("#poblacion").append("<option value='" + poblaciones[i].poblacion + "'>" + poblaciones[i].poblacion + "</option>");
+    //         }
+    //     }
+    // })
+    // .fail(function() {
+    //     load_poblaciones_v2(prov);
+    // });
+}
 
 function validate_product() {
 

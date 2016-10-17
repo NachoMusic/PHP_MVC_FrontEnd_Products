@@ -61,6 +61,19 @@
         <br/>
         <div id="dropzone" class="dropzone"></div><br/>
 
+        <!-- Combobox country -->
+        <label for="pais">Country</label>
+  			<select id="pais"></select>
+  			<span id="e_pais" class="styerror"></span>
+
+        <label for="provincia">Province</label>
+  			<select id="provincia"></select>
+  			<span id="e_provincia" class="styerror"></span>
+
+        <label for="poblacion">Town</label>
+  			<select id="poblacion"></select>
+  			<span id="e_poblacion" class="styerror"></span>
+
     </fieldset>
     <button type="button" id="submit_product" name="submit_product">Register Product</button>
 </form>
