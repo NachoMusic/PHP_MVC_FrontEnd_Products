@@ -294,7 +294,6 @@ $(document).ready(function() {
 function load_countries_v1() {
     $.get( "modules/products/controller/controller_products.class.php?load_pais=true",
         function( response ) {
-            // console.log(response);
             // if(response === 'error'){
                 // load_countries_v2("resources/ListOfCountryNamesByName.json");
             // }else{
@@ -302,7 +301,7 @@ function load_countries_v1() {
             // }
     })
     .fail(function(response) {
-        load_countries_v2("resources/ListOfCountryNamesByName.json");
+        // load_countries_v2("resources/ListOfCountryNamesByName.json");
     });
 }
 
@@ -310,10 +309,10 @@ function load_countries_v2(cad) {
     $.getJSON( cad, function(data) {
         $("#pais").empty();
         $("#pais").append('<option value="" selected="selected">Selecciona un Pais</option>');
-        console.log(data);
-        // $.each(data, function (i, valor) {
-        //     $("#pais").append("<option value='" + valor.sISOCode + "'>" + valor.sName + "</option>");
-        // });
+        // console.log(data);
+        $.each(data, function (i, valor) {
+            $("#pais").append("<option value='" + valor.sISOCode + "'>" + valor.sName + "</option>");
+        });
     })
     .fail(function() {
         alert( "error load_countries" );

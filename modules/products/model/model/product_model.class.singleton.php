@@ -23,4 +23,8 @@ class product_model {
         return $this->bll->create_product_BLL($arrArgument);
     }
 
+    public function obtain_countries($url) {
+        return $this->bll->obtain_countries_BLL($url);
+    }
+
 }

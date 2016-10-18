@@ -28,4 +28,8 @@ class product_bll {
         return $this->dao->create_product_DAO($this->db, $arrArgument);
     }
 
+    public function obtain_countries_BLL($url) {
+        return $this->dao->obtain_countries_DAO($url);
+    }
+
 }
