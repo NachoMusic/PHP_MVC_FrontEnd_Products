@@ -27,4 +27,8 @@ class product_model {
         return $this->bll->obtain_countries_BLL($url);
     }
 
+    public function obtain_provinces() {
+        return $this->bll->obtain_provinces_BLL();
+    }
+
 }

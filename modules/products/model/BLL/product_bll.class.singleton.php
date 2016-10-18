@@ -32,4 +32,8 @@ class product_bll {
         return $this->dao->obtain_countries_DAO($url);
     }
 
+    public function obtain_provinces_BLL() {
+        return $this->dao->obtain_provinces_DAO();
+    }
+
 }

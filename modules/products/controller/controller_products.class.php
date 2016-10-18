@@ -151,3 +151,22 @@ if(  (isset($_GET["load_pais"])) && ($_GET["load_pais"] == true)  ){
         exit;
     }
 }
+
+//////////// load_poblaciones //////////////
+if(  (isset($_GET["load_provincias"])) && ($_GET["load_provincias"] == true)  ){
+    $jsondata = array();
+    $json = array();
+
+    $path_model=$_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/modules/products/model/model/';
+    $json = loadModel($path_model, "product_model", "obtain_provinces");
+
+    if($json){
+        $jsondata["provincias"] = $json;
+        echo json_encode($jsondata);
+        exit;
+    }else{
+        $jsondata["provincias"] = "error";
+        echo json_encode($jsondata);
+        exit;
+    }
+}

@@ -294,14 +294,14 @@ $(document).ready(function() {
 function load_countries_v1() {
     $.get( "modules/products/controller/controller_products.class.php?load_pais=true",
         function( response ) {
-            // if(response === 'error'){
-                // load_countries_v2("resources/ListOfCountryNamesByName.json");
-            // }else{
+            if(response === 'error'){
+                load_countries_v2("resources/ListOfCountryNamesByName.json");
+            }else{
                 load_countries_v2("modules/products/controller/controller_products.class.php?load_pais=true"); //oorsprong.org
-            // }
+            }
     })
     .fail(function(response) {
-        // load_countries_v2("resources/ListOfCountryNamesByName.json");
+        load_countries_v2("resources/ListOfCountryNamesByName.json");
     });
 }
 
@@ -320,31 +320,32 @@ function load_countries_v2(cad) {
 }
 
 function load_provincias_v1() { //provinciasypoblaciones.xml - xpath
-    // $.get( "pages/controller_users.php?load_provincias=true",
-    // function( response ) {
-    //     $("#provincia").empty();
-    //     $("#provincia").append('<option value="" selected="selected">Selecciona una Provincia</option>');
-    //
-    //     //alert(response);
-    //     var json = JSON.parse(response);
-    //     var provincias=json.provincias;
-    //     //alert(provincias);
-    //     //console.log(provincias);
-    //
-    //     //alert(provincias[0].id);
-    //     //alert(provincias[0].nombre);
-    //
-    //     if(provincias === 'error'){
-    //         load_provincias_v2();
-    //     }else{
-    //         for (var i = 0; i < provincias.length; i++) {
-    //             $("#provincia").append("<option value='" + provincias[i].id + "'>" + provincias[i].nombre + "</option>");
-    //         }
-    //     }
-    // })
-    // .fail(function(response) {
-    //     load_provincias_v2();
-    // });
+    $.get( "modules/products/controller/controller_products.class.php?load_provincias=true",
+    function( response ) {
+        $("#provincia").empty();
+        $("#provincia").append('<option value="" selected="selected">Selecciona una Provincia</option>');
+        // console.log(response);
+        //alert(response);
+        var json = JSON.parse(response);
+        var provincias=json.provincias;
+        //alert(provincias);
+        //console.log(provincias);
+
+        //alert(provincias[0].id);
+        //alert(provincias[0].nombre);
+
+        if(provincias === 'error'){
+            load_provincias_v2();
+        }else{
+            for (var i = 0; i < provincias.length; i++) {
+                $("#provincia").append("<option value='" + provincias[i].id + "'>" + provincias[i].nombre + "</option>");
+            }
+        }
+    })
+    .fail(function(response) {
+        console.log("fail");
+        // load_provincias_v2();
+    });
 }
 
 function load_poblaciones_v1(prov) { //provinciasypoblaciones.xml - xpath

@@ -57,4 +57,22 @@ class productDAO {
         return ($file_contents) ? $file_contents : FALSE;
     }
 
+    public function obtain_provinces_DAO() {
+        $json = array();
+        $tmp = array();
+
+        $provincias = simplexml_load_file("../../../resources/provinciasypoblaciones.xml");
+        $result = $provincias->xpath("/lista/provincia/nombre | /lista/provincia/@id");
+        for ($i=0; $i<count($result); $i+=2) {
+            $e=$i+1;
+            $provincia=$result[$e];
+
+            $tmp = array(
+                'id' => (string) $result[$i], 'nombre' => (string) $provincia
+            );
+            array_push($json, $tmp);
+        }
+        return $json;
+    }
+
 }
