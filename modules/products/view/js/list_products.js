@@ -97,7 +97,17 @@ function pintar_product(data) {
         availability.innerHTML += " - " + data.product.availability[i];
     }
 
-    //arreglar ruta IMATGE!!!!!
+    var country = document.createElement("div");
+    country.innerHTML = "country = ";
+    country.innerHTML += data.product.country;
+
+    var province = document.createElement("div");
+    province.innerHTML = "province = ";
+    province.innerHTML += data.product.province;
+
+    var town = document.createElement("div");
+    town.innerHTML = "town = ";
+    town.innerHTML += data.product.town;
 
     var cad = data.avatar.datos;
     //console.log(cad);
@@ -117,6 +127,9 @@ function pintar_product(data) {
     parrafo.appendChild(obsolescence_date);
     parrafo.appendChild(product_category);
     parrafo.appendChild(availability);
+    parrafo.appendChild(country);
+    parrafo.appendChild(province);
+    parrafo.appendChild(town);
     content.appendChild(div_product);
     content.appendChild(img);
 }

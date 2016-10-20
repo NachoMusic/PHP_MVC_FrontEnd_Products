@@ -31,4 +31,7 @@ class product_model {
         return $this->bll->obtain_provinces_BLL();
     }
 
+    public function obtain_towns($arrArgument) {
+        return $this->bll->obtain_towns_BLL($arrArgument);
+    }
 }

@@ -37,6 +37,9 @@ function validate_product($value) {
     //no filter
     $result['product_category'] = $value['product_category'];
     $result['availability'] = $value['availability'];
+    $result['country'] = $value['country'];
+    $result['province'] = $value['province'];
+    $result['town'] = $value['town'];
 
     //obsolescence date can't be before enter date
     $dates = validate_dates($result['enter_date'], $result['obsolescence_date']);

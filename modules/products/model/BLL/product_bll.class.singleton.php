@@ -36,4 +36,8 @@ class product_bll {
         return $this->dao->obtain_provinces_DAO();
     }
 
+    public function obtain_towns_BLL($arrArgument) {
+        return $this->dao->obtain_towns_DAO($arrArgument);
+    }
+
 }

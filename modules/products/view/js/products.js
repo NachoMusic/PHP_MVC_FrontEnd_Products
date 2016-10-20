@@ -330,10 +330,8 @@ function load_provincias_v1() { //provinciasypoblaciones.xml - xpath
         var provincias=json.provincias;
         //alert(provincias);
         //console.log(provincias);
-
         //alert(provincias[0].id);
         //alert(provincias[0].nombre);
-
         if(provincias === 'error'){
             load_provincias_v2();
         }else{
@@ -343,39 +341,70 @@ function load_provincias_v1() { //provinciasypoblaciones.xml - xpath
         }
     })
     .fail(function(response) {
-        console.log("fail");
-        // load_provincias_v2();
+        load_provincias_v2();
     });
 }
 
+function load_provincias_v2() {
+    $.get("resources/provinciasypoblaciones.xml", function (xml) {
+	    $("#provincia").empty();
+	    $("#provincia").append('<option value="" selected="selected">Selecciona una Provincia</option>');
+
+        $(xml).find("provincia").each(function () {
+            var id = $(this).attr('id');
+            var nombre = $(this).find('nombre').text();
+            $("#provincia").append("<option value='" + id + "'>" + nombre + "</option>");
+        });
+    })
+    .fail(function() {
+        alert( "error load_provincias" );
+    });
+}
+
+
 function load_poblaciones_v1(prov) { //provinciasypoblaciones.xml - xpath
-    // var datos = { idPoblac : prov  };
-    // $.post("pages/controller_users.php", datos, function(response) {
-    //     //alert(response);
-    //     var json = JSON.parse(response);
-    //     var poblaciones=json.poblaciones;
-    //     //alert(poblaciones);
-    //     //console.log(poblaciones);
-    //     //alert(poblaciones[0].poblacion);
-    //
-    //     $("#poblacion").empty();
-    //     $("#poblacion").append('<option value="" selected="selected">Selecciona una Poblacion</option>');
-    //
-    //     if(poblaciones === 'error'){
-    //         load_poblaciones_v2(prov);
-    //     }else{
-    //         for (var i = 0; i < poblaciones.length; i++) {
-    //             $("#poblacion").append("<option value='" + poblaciones[i].poblacion + "'>" + poblaciones[i].poblacion + "</option>");
-    //         }
-    //     }
-    // })
-    // .fail(function() {
-    //     load_poblaciones_v2(prov);
-    // });
+    var datos = { idPoblac : prov  };
+    $.post("modules/products/controller/controller_products.class.php", datos, function(response) {
+        // console.log(response);
+        var json = JSON.parse(response);
+        var poblaciones=json.poblaciones;
+        //alert(poblaciones);
+        //console.log(poblaciones);
+        //alert(poblaciones[0].poblacion);
+
+        $("#poblacion").empty();
+        $("#poblacion").append('<option value="" selected="selected">Selecciona una Poblacion</option>');
+
+        if(poblaciones === 'error'){
+            load_poblaciones_v2(prov);
+        }else{
+            for (var i = 0; i < poblaciones.length; i++) {
+                $("#poblacion").append("<option value='" + poblaciones[i].poblacion + "'>" + poblaciones[i].poblacion + "</option>");
+            }
+        }
+    })
+    .fail(function() {
+        load_poblaciones_v2(prov);
+    });
+}
+
+function load_poblaciones_v2(prov) {
+    $.get("resources/provinciasypoblaciones.xml", function (xml) {
+		$("#poblacion").empty();
+	    $("#poblacion").append('<option value="" selected="selected">Selecciona una Poblacion</option>');
+
+		$(xml).find('provincia[id=' + prov + ']').each(function(){
+    		$(this).find('localidad').each(function(){
+    			 $("#poblacion").append("<option value='" + $(this).text() + "'>" + $(this).text() + "</option>");
+    		});
+        });
+	})
+	.fail(function() {
+        alert( "error load_poblaciones" );
+    });
 }
 
 function validate_product() {
-
     var result = true;
 
     var product_name = document.getElementById("product_name").value;
@@ -394,6 +423,70 @@ function validate_product() {
             j++;
         }
     }
+    // combobox //
+    // function validate_pais(pais) {
+    //     if (pais == null) {
+    //         //return 'default_pais';
+    //         return false;
+    //     }
+    //     if (pais.length == 0) {
+    //         //return 'default_pais';
+    //         return false;
+    //     }
+    //     if (pais === 'Selecciona un Pais') {
+    //         //return 'default_pais';
+    //         return false;
+    //     }
+    //     if (pais.length > 0) {
+    //         // var regexp = /^[a-zA-Z]*$/;
+    //         // return regexp.test(pais);
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    // function validate_provincia(provincia) {
+    //     if (provincia == null) {
+    //         return 'default_provincia';
+    //     }
+    //     if (provincia.length == 0) {
+    //         return 'default_provincia';
+    //     }
+    //     if (provincia === 'Selecciona una Provincia') {
+    //         //return 'default_provincia';
+    //         return false;
+    //     }
+    //     if (provincia.length > 0) {
+    //         // var regexp = /^[a-zA-Z0-9, ]*$/;
+    //         // return regexp.test(provincia);
+    //         return true;
+    //     }
+    //     return false;
+    // }
+    // function validate_poblacion(poblacion) {
+    //     if (poblacion == null) {
+    //         return 'default_poblacion';
+    //     }
+    //     if (poblacion.length == 0) {
+    //         return 'default_poblacion';
+    //     }
+    //     if (poblacion === 'Selecciona una Poblacion') {
+    //         //return 'default_poblacion';
+    //         return false;
+    //     }
+    //     if (poblacion.length > 0) {
+    //         // var regexp = /^[a-zA-Z/, -'()]*$/;
+    //         // return regexp.test(poblacion);
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    var pais = document.getElementById("pais").value;
+    var provincia = document.getElementById("provincia").value;
+    var poblacion = document.getElementById("poblacion").value;
+    // var v_pais = validate_pais(pais);
+	// var v_provincia = validate_provincia(provincia);
+	// var v_poblacion = validate_poblacion(poblacion);
 
     var email_reg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
     var date_reg = /(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((175[7-9])|(17[6-9][0-9])|(1[8-9][0-9][0-9])|([2-9][0-9][0-9][0-9]))/i;
@@ -404,7 +497,7 @@ function validate_product() {
     var usr_reg = /^[0-9a-zA-Z]{2,20}$/;
     var number_reg = /^\d+$/;
 
-    //$(".error").remove();
+    $(".error").remove();
     if ($("#product_name").val() === "" || $("#product_name").val() == "Introduce name") {
         $("#product_name").focus().after("<span class='error'>Introduce name</span>");
         result = false;
@@ -465,6 +558,36 @@ function validate_product() {
         return false;
     }
 
+    // if(!v_pais){
+    //     $("#pais").focus().after("<span class='error'>Introduce obsolescence date</span>");
+    //     // document.getElementById("e_pais").innerHTML = "You have to select the country";
+    //     result = false;
+    //     return false;
+    // }
+    if ($("#pais").val() === "" || $("#pais").val() == "Selecciona un Pais") {
+        $("#pais").focus().after("<span class='error'>Introduce pais</span>");
+        result = false;
+        return false;
+    }
+    if ($("#provincia").val() === "" || $("#provincia").val() == "Selecciona una Provincia") {
+        if ($("#pais").val() == "ES"){
+            $("#provincia").focus().after("<span class='error'>Introduce provincia</span>");
+            result = false;
+            return false;
+        } else {
+            $("#provincia").val("default_provincia");
+        }
+    }
+    if ($("#poblacion").val() === "" || $("#poblacion").val() == "Selecciona una Poblacion") {
+        if ($("#pais").val() == "ES"){
+            $("#poblacion").focus().after("<span class='error'>Introduce poblacion</span>");
+            result = false;
+            return false;
+        } else {
+            $("#poblacion").val("default_poblacion");
+        }
+    }
+
     //Si ha ido todo bien, se envian los datos al servidor
     if (result) {
         var data = {
@@ -475,7 +598,10 @@ function validate_product() {
             "enter_date": enter_date,
             "obsolescence_date": obsolescence_date,
             "product_category": product_category,
-            "availability": availability
+            "availability": availability,
+            "country": pais,
+            "province": provincia,
+            "town": poblacion
         };
 
         var data_products_JSON = JSON.stringify(data);
@@ -493,8 +619,9 @@ function validate_product() {
                 }
 
             }, "json").fail(function(xhr) {
-            //console.log(xhr.responseJSON);
-            /*if (xhr.responseJSON.error.product_name)
+             console.log(xhr.responseJSON);
+
+            if (xhr.responseJSON.error.product_name)
                 $("#product_name").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_name + "</span>");
 
             if (xhr.responseJSON.error.product_description)
@@ -535,12 +662,7 @@ function validate_product() {
                 $('.msg').text('Error Upload image!!').addClass('msg_error').animate({
                     'right': '300px'
                 }, 300);
-            }*/
+            }
         });
-
-
-        //);
-
     }
-
 }

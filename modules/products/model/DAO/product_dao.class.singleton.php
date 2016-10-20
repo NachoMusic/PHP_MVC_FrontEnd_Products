@@ -23,7 +23,6 @@ class productDAO {
         $product_category = $arrArgument['product_category'];
         $availability = $arrArgument['availability'];
         $avatar = $_SESSION["nombre_fichero"];
-        // $avatar = "/fakelocation/untilIimplementIt.png";
 
         $web = 0;
         $warehouse = 0;
@@ -38,9 +37,13 @@ class productDAO {
                 $physical_store = 1;
         }
 
-        $sql = "INSERT INTO products (product_name, product_description, product_price, product_id, enter_date, obsolescence_date, product_category, Web, Warehouse, Physical_store, avatar) VALUES ('". $product_name
+        $country = $arrArgument['country'];
+        $province = $arrArgument['province'];
+        $town = $arrArgument['town'];
+
+        $sql = "INSERT INTO products (product_name, product_description, product_price, product_id, enter_date, obsolescence_date, product_category, Web, Warehouse, Physical_store, avatar, country, province, town) VALUES ('". $product_name
         ."', '". $product_description ."', '". $product_price ."', '". $product_id ."' , '". $enter_date ."', '". $obsolescence_date
-        ."', '". $product_category ."', '". $web ."','". $warehouse ."', '". $physical_store ."' ,'". $avatar ."')";
+        ."', '". $product_category ."', '". $web ."','". $warehouse ."', '". $physical_store ."' ,'". $avatar ."', '". $country ."', '". $province ."', '". $town ."')";
 
         return $db->ejecutar($sql);
     }
@@ -69,6 +72,23 @@ class productDAO {
 
             $tmp = array(
                 'id' => (string) $result[$i], 'nombre' => (string) $provincia
+            );
+            array_push($json, $tmp);
+        }
+        return $json;
+    }
+
+    public function obtain_towns_DAO($arrArgument) {
+        $json = array();
+        $tmp = array();
+
+        $filter = (string)$arrArgument;
+        $xml = simplexml_load_file('../../../resources/provinciasypoblaciones.xml');
+        $result = $xml->xpath("/lista/provincia[@id='$filter']/localidades");
+
+        for ($i=0; $i<count($result[0]); $i++) {
+            $tmp = array(
+                'poblacion' => (string) $result[0]->localidad[$i]
             );
             array_push($json, $tmp);
         }

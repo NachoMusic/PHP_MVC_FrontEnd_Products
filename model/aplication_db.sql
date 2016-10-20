@@ -28,6 +28,9 @@ CREATE TABLE `products` (
   `Warehouse` tinyint(1) DEFAULT NULL,
   `Physical_store` tinyint(1) DEFAULT NULL,
   `avatar` varchar(200) DEFAULT NULL,
+  `country` varchar(50) NOT NULL,
+  `province` varchar(50) NOT NULL,
+  `town` varchar(50) NOT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

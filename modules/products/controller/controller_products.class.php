@@ -43,6 +43,9 @@ function alta_products() {
             'obsolescence_date' => $result['datos']['obsolescence_date'],
             'product_category' => $result['datos']['product_category'],
             'availability' => $result['datos']['availability'],
+            'country' => $result['datos']['country'],
+            'province' => $result['datos']['province'],
+            'town' => $result['datos']['town'],
         );
 
         ///////////// Insert into BD /////////////
@@ -152,7 +155,7 @@ if(  (isset($_GET["load_pais"])) && ($_GET["load_pais"] == true)  ){
     }
 }
 
-//////////// load_poblaciones //////////////
+//////////// load_provincias //////////////
 if(  (isset($_GET["load_provincias"])) && ($_GET["load_provincias"] == true)  ){
     $jsondata = array();
     $json = array();
@@ -166,6 +169,25 @@ if(  (isset($_GET["load_provincias"])) && ($_GET["load_provincias"] == true)  ){
         exit;
     }else{
         $jsondata["provincias"] = "error";
+        echo json_encode($jsondata);
+        exit;
+    }
+}
+
+//////////// load_poblaciones //////////////
+if(  isset($_POST['idPoblac']) ){
+    $jsondata = array();
+    $json = array();
+
+    $path_model=$_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/modules/products/model/model/';
+    $json = loadModel($path_model, "product_model", "obtain_towns", $_POST['idPoblac']);
+
+    if($json){
+        $jsondata["poblaciones"] = $json;
+        echo json_encode($jsondata);
+        exit;
+    }else{
+        $jsondata["poblaciones"] = "error";
         echo json_encode($jsondata);
         exit;
     }
