@@ -15,14 +15,13 @@ if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
 }
 
 if ((isset($_POST['alta_products_json']))) {
-    // echo json_encode("Hola mundo");
+    // echo json_encode("Hola mundo");exit;
     alta_products();
 }
 
 function alta_products() {
     $jsondata = array();
     $productsJSON = json_decode($_POST["alta_products_json"], true);
-
     $result = validate_product($productsJSON);
 
 
@@ -58,8 +57,8 @@ function alta_products() {
             $mensaje = "Product has been successfully registered";
         else
             $mensaje = "Error in the register process. Try it later.";
-        // echo json_encode("asdf" . $mensaje);
-        // exit;
+
+
         //redirigir a otra pagina con los datos de $arrArgument y $mensaje
         $_SESSION['product'] = $arrArgument;
         $_SESSION['msje'] = $mensaje;
@@ -68,7 +67,10 @@ function alta_products() {
         //$jsondata['product'] = $arrArgument;
         $jsondata["success"] = true;
         $jsondata["redirect"] = $callback;
+        // echo json_encode("asdf" . $jsondata);
+        // exit;
         echo json_encode($jsondata);
+        exit;
     } else {
         //console_log("false");
         $jsondata["success"] = false;
@@ -190,5 +192,31 @@ if(  isset($_POST['idPoblac']) ){
         $jsondata["poblaciones"] = "error";
         echo json_encode($jsondata);
         exit;
+    }
+}
+
+//////////// load products //////////////
+$path = $_SERVER['DOCUMENT_ROOT'] . '/nacho_framework2DAW/';
+define('SITE_ROOT', $path);
+if ($_GET["idProduct"]) {
+    $id = $_GET["idProduct"];
+    $path_model = SITE_ROOT . '/modules/products/model/model/';
+    $arrValue = loadModel($path_model, "products_model", "details_products",$id);
+
+    if ($arrValue[0]) {
+        loadView('modules/products/view/', 'details_products.php', $arrValue[0]);
+    } else {
+        $message = "NOT FOUND PRODUCT";
+        loadView('view/inc/', '404.php', $message);
+    }
+} else {
+    $path_model = SITE_ROOT . '/modules/products/model/model/';
+    $arrValue = loadModel($path_model, "products_model", "list_products");
+
+    if ($arrValue) {
+        loadView('modules/products/view/', 'list_products.php', $arrValue);
+    } else {
+        $message = "NOT PRODUCTS";
+        loadView('view/inc/', '404.php', $message);
     }
 }

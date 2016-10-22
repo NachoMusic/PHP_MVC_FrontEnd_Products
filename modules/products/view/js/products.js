@@ -107,7 +107,7 @@ $(document).ready(function() {
         });
     });
 
-    //$(this).fill_or_clean();
+    $(this).fill_or_clean();
 
 
     var email_reg = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
@@ -610,16 +610,16 @@ function validate_product() {
                 alta_products_json: data_products_JSON
             },
             function(response) {
-                //console.log(typeof(response));
+                console.log(typeof(response));
                 //var responseObj = JSON.parse(response); //I convert the string to a object!
-                // console.log(response);
-
+                console.log(response);
+                console.log(response.success);
                 if (response.success) {
                     window.location.href = response.redirect;
                 }
 
             }, "json").fail(function(xhr) {
-             console.log(xhr.responseJSON);
+             //console.log(xhr.responseJSON);
 
             if (xhr.responseJSON.error.product_name)
                 $("#product_name").focus().after("<span  class='error1'>" + xhr.responseJSON.error.product_name + "</span>");
