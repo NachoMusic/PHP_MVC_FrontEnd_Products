@@ -101,4 +101,9 @@ class productDAO {
           return $db->listar($stmt);
     }
 
+    public function details_products_DAO($db,$id) {
+        $sql = "SELECT * FROM products WHERE product_id='".$id."'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 }

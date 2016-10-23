@@ -27,6 +27,10 @@ class product_model {
         return $this->bll->list_products_BLL();
     }
 
+    public function details_products($id) {
+        return $this->bll->details_products_BLL($id);
+    }
+
     public function obtain_countries($url) {
         return $this->bll->obtain_countries_BLL($url);
     }

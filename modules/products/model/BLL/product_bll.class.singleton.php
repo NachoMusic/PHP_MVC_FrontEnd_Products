@@ -32,6 +32,10 @@ class product_bll {
         return $this->dao->list_products_DAO($this->db);
     }
 
+    public function details_products_BLL($id) {
+        return $this->dao->details_products_DAO($this->db,$id);
+    }
+
     public function obtain_countries_BLL($url) {
         return $this->dao->obtain_countries_DAO($url);
     }
