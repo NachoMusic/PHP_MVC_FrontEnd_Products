@@ -34,7 +34,7 @@ function loadView($rutaVista, $templateName, $arrPassValue = '') {
 
 			$message = "NO TEMPLATE FOUND";
 			$arrData = $message;
-			require_once 'view/inc/404.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/nacho_framework2DAW/view/inc/404.php';
 			die();
 		}
 	}

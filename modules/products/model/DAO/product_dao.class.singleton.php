@@ -95,4 +95,10 @@ class productDAO {
         return $json;
     }
 
+    public function list_products_DAO($db){
+          $sql = "SELECT * FROM products";
+          $stmt = $db->ejecutar($sql);
+          return $db->listar($stmt);
+    }
+
 }

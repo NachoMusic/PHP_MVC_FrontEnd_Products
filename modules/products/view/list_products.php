@@ -15,9 +15,9 @@
                     //echo $productos['descripcion'] . " " . $productos['precio'] . "</br>";
                     ?>
                     <a id="prod" href="index.php?module=products&idProduct=<?php echo $product['id'] ?>" >
-                        <img class="prodImg" src=<?php echo $product['avatar'] ?> alt="product" >
-                        <p><?php echo $product['name'] ?></p>
-                        <p id="p2"><?php echo $product['price'] ?>€</p>
+                        <img class="prodImg" src=<?php echo "media/".$product['avatar'] ?> alt="product" >
+                        <p><?php echo $product['product_name'] ?></p>
+                        <p id="p2"><?php echo $product['product_price'] ?>€</p>
                     </a>
                     <?php
                 }
