@@ -1,7 +1,12 @@
 <script type="text/javascript" src="modules/products_frontend/view/js/jquery.bootpag.min.js"></script>
 <script type="text/javascript" src="modules/products_frontend/view/js/list_products.js" ></script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <div id="results"></div>
-
 <center>
     <div class="pagination"></div>
 </center>

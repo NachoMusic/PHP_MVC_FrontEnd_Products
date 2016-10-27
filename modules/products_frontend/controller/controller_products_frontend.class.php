@@ -77,7 +77,6 @@ if (isset($_GET["idProduct"])) {
         showErrorPage(2, "ERROR - 404 NO DATA", 'HTTP/1.0 404 Not Found', 404);
     }
 } else {
-
     $item_per_page = 3;
 
     //filter to $_POST["page_num"]
@@ -89,7 +88,6 @@ if (isset($_GET["idProduct"])) {
     } else {
         $page_number = 1;
     }
-
     set_error_handler('ErrorHandler');
     try {
         //throw new Exception();
@@ -105,11 +103,11 @@ if (isset($_GET["idProduct"])) {
     } catch (Exception $e) {
         showErrorPage(0, "ERROR - 503 BD Unavailable");
     }
-    // restore_error_handler();
-    //
-    // if ($arrValue) {
-    //     paint_template_products($arrValue);
-    // } else {
-    //     showErrorPage(0, "ERROR - 404 NO PRODUCTS");
-    // }
+    restore_error_handler();
+
+    if ($arrValue) {
+        paint_template_products($arrValue);
+    } else {
+        showErrorPage(0, "ERROR - 404 NO PRODUCTS");
+    }
 }

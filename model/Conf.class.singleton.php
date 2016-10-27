@@ -1,6 +1,6 @@
 <?php
-$path=$_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/';
-define('SITE_ROOT', $path);
+// $path=$_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/';
+// define('SITE_ROOT', $path);
 define('MODEL_PATH',SITE_ROOT.'model/');
 
 class Conf {

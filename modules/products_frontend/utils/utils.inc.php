@@ -49,10 +49,10 @@ function paint_template_products($arrData) {
         foreach ($arrData as $product) {
             //echo $productos['id'] . " " . $productos['nombre'] . "</br>";
             //echo $productos['descripcion'] . " " . $productos['precio'] . "</br>";
-            print ("<div class='prod' id='".$product['id']."'>");
-            print ("<img class='prodImg' src='" . $product['avatar'] . "'alt='product' >");
-            print ("<p>" . $product['name'] . "</p>");
-            print ("<p id='p2'>" . $product['price'] . "€</p>");
+            print ("<div class='prod' id='".$product['product_id']."'>");
+            print ("<img class='prodImg' src='" . "media/" .$product['avatar'] . "'alt='product' >");
+            print ("<p>" . $product['product_name'] . "</p>");
+            print ("<p id='p2'>" . $product['product_price'] . "€</p>");
             print ("</div>");
         }
     }

@@ -21,7 +21,7 @@ class products_dao {
     }
 
     public function details_products_DAO($db,$id) {
-        $sql = "SELECT * FROM products WHERE id=".$id;
+        $sql = "SELECT * FROM products WHERE product_id=".$id;
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
 
@@ -30,7 +30,7 @@ class products_dao {
     public function page_products_DAO($db,$arrArgument) {
         $position = $arrArgument['position'];
         $item_per_page = $arrArgument['item_per_page'];
-        $sql = "SELECT * FROM products ORDER BY id ASC LIMIT ".$position." , ".$item_per_page;
+        $sql = "SELECT * FROM products ORDER BY product_id ASC LIMIT ".$position." , ".$item_per_page;
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
 

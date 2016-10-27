@@ -17,13 +17,7 @@ class Db {
     private function setConexion() {
         require_once 'Conf.class.singleton.php';
         $conf = Conf::getInstance();
-        /*
-        $this->servidor = $conf->getHostDB();
-        $this->base_datos = $conf->getDB();
-        $this->usuario = $conf->getUserDB();
-        $this->password = $conf->getPassDB();
-        */
-        // Improvement
+
         $this->servidor = $conf->_hostdb;
         $this->base_datos = $conf->_db;
         $this->usuario = $conf->_userdb;

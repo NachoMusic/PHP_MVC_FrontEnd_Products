@@ -56,7 +56,6 @@ class productDAO {
         curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         $file_contents = curl_exec($ch);
         curl_close($ch);
-        return $file_contents;
         return ($file_contents) ? $file_contents : FALSE;
     }
 
