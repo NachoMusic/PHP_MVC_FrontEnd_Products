@@ -142,8 +142,8 @@ if(  (isset($_GET["load_pais"])) && ($_GET["load_pais"] == true)  ){
     // echo json_encode("Hello I'm here");
     $json = array();
 
-    $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
-
+    // $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
+    $url = 'http://plastmagysl.com/repoCountryNamesByName.json';
     $path_model=$_SERVER['DOCUMENT_ROOT'].'/nacho_framework2DAW/modules/products/model/model/';
     $json = loadModel($path_model, "product_model", "obtain_countries", $url);
 

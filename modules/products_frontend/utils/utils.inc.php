@@ -33,7 +33,8 @@ function paint_template_error($message) {
 }
 
 function paint_template_products($arrData) {
-    print ("<script type='text/javascript' src='modules/products/view/js/modal_products.js' ></script>");
+    print ("<script type='text/javascript' src='modules/products_frontend/view/js/modal_products.js' ></script>");
+    // echo json_encode("hola");exit;
     print ("<section >");
     print ("<div class='container'>");
     print ("<div id='list_prod' class='row text-center pad-row'>");
@@ -44,12 +45,12 @@ function paint_template_products($arrData) {
     print ("<br>");
     print ("<br>");
     print ("<br>");
-    if (isset($arrData) && !empty($arrData)) {
 
+    if (isset($arrData) && !empty($arrData)) {
         foreach ($arrData as $product) {
             //echo $productos['id'] . " " . $productos['nombre'] . "</br>";
             //echo $productos['descripcion'] . " " . $productos['precio'] . "</br>";
-            print ("<div class='prod' id='".$product['product_id']."'>");
+            print ("<div class='prod' id='" . $product['product_id'] . "'>");
             print ("<img class='prodImg' src='" . "media/" .$product['avatar'] . "'alt='product' >");
             print ("<p>" . $product['product_name'] . "</p>");
             print ("<p id='p2'>" . $product['product_price'] . "€</p>");

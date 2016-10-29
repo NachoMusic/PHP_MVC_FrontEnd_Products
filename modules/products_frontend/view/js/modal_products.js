@@ -5,17 +5,17 @@ $(document).ready(function () {
         var id = this.getAttribute('id');
         //alert(id);
 
-        $.get("modules/products/controller/controller_products.class.php?idProduct=" + id, function (data, status) {
+        $.get("modules/products_frontend/controller/controller_products_frontend.class.php?idProduct=" + id, function (data, status) {
             var json = JSON.parse(data);
             var product = json.product;
             //alert(product.name);
             //console.log(product);
 
-            $("#img_prod").html('<img src="' + product.avatar + '" height="75" width="75"> ');
+            $("#img_prod").html('<img src="media/' + product.avatar + '" height="75" width="75"> ');
             $("#name_prod").html(product.name);
-            $("#description_prod").html("<strong>Description: <br/></strong>" + product.description);
-            $("#titration_prod").html("<strong>Titration:</strong>" + product.titration);
-            $("#price_prod").html("Price: " + product.price + " €");
+            $("#description_prod").html("<strong>Description: <br/></strong>" + product.product_description);
+            $("#titration_prod").html("<strong>Titration:</strong>" + product.product_id);
+            $("#price_prod").html("Price: " + product.product_price + " €");
 
             //we do this so that  details_prod  appear
             $("#details_prod").show();
@@ -47,11 +47,11 @@ $(document).ready(function () {
         .fail(function (xhr) {
             //if  we already have an error 404
             if (xhr.status === 404) {
-                $("#results").load("modules/products/controller/controller_products.class.php?view_error=false");
+                $("#results").load("modules/products_frontend/controller/controller_products_frontend.class.php?view_error=false");
             } else {
-                $("#results").load("modules/products/controller/controller_products.class.php?view_error=true");
+                $("#results").load("modules/products_frontend/controller/controller_products_frontend.class.php?view_error=true");
             }
-            ;
+
         });
     });
 });

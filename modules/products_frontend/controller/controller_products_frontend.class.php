@@ -78,7 +78,6 @@ if (isset($_GET["idProduct"])) {
     }
 } else {
     $item_per_page = 3;
-
     //filter to $_POST["page_num"]
     if (isset($_POST["page_num"])) {
         $result = filter_num_int($_POST["page_num"]);
