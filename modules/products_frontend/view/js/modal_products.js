@@ -12,9 +12,9 @@ $(document).ready(function () {
             //console.log(product);
 
             $("#img_prod").html('<img src="media/' + product.avatar + '" height="75" width="75"> ');
-            $("#name_prod").html(product.name);
+            $("#name_prod").html(product.product_name);
             $("#description_prod").html("<strong>Description: <br/></strong>" + product.product_description);
-            $("#titration_prod").html("<strong>Titration:</strong>" + product.product_id);
+            $("#titration_prod").html("<strong>ID:</strong>" + product.product_id);
             $("#price_prod").html("Price: " + product.product_price + " €");
 
             //we do this so that  details_prod  appear
