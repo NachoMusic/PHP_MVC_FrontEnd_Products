@@ -36,7 +36,7 @@ function search(keyword) {
             $(".pagination_prods").bootpag({
                 total: pages,
                 page: 1,
-                maxVisible: 5,
+                maxVisible: 6,
                 next: 'next',
                 prev: 'prev'
             }).on("page", function (e, num) {
@@ -69,14 +69,14 @@ function search_product(keyword) {
         $('#results').html('');
         $('.pagination_prods').html('');
 
-        var img_product = document.getElementById('img_product');
-        img_product.innerHTML = '<img src=media/"' + product[0].avatar + '" class="img-product"> ';
-
-        var nom_product = document.getElementById('nom_product');
+        var img_product = document.getElementById('img_prod');
+        img_product.innerHTML = '<img src="media/' + product[0].avatar + '" class="img-product"> ';
+        // console.log('<img src="media/' + product[0].avatar + '" class="img-product"> ');
+        var nom_product = document.getElementById('name_prod');
         nom_product.innerHTML = product[0].product_name;
-        var desc_product = document.getElementById('desc_product');
+        var desc_product = document.getElementById('description_prod');
         desc_product.innerHTML = product[0].product_description;
-        var price_product = document.getElementById('price_product');
+        var price_product = document.getElementById('price_prod');
         price_product.innerHTML = "Precio: " + product[0].product_price + " €";
         price_product.setAttribute("class", "special");
 

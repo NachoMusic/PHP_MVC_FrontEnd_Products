@@ -23,7 +23,7 @@
 <!-- modal window details_product -->
 <section id="product">
 
-    <div id="details_prod" hidden>
+    <div id="details_prod">
 
         <!--<ol class="breadcrumb">
         <li><a href="index.php?module=products">Products</a></li>
@@ -40,9 +40,6 @@
                 <br />
                 <p>
                     <div id="description_prod"></div>
-                </p>
-                <p>
-                    <div id="titration_prod"></div>
                 </p>
                 <h2> <strong><div id="price_prod"></div></strong> </h5>
 

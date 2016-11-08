@@ -175,7 +175,7 @@ if (isset($_GET["idProduct"])) {
         $page_number = 1;
     }
 
-    $item_per_page = 6;
+    $item_per_page = 3;
 
     if (isset($_GET["keyword"])) {
         $result = filter_string($_GET["keyword"]);
