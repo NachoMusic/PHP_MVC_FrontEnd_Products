@@ -36,7 +36,7 @@ function search(keyword) {
             $(".pagination_prods").bootpag({
                 total: pages,
                 page: 1,
-                maxVisible: 6,
+                maxVisible: 3,
                 next: 'next',
                 prev: 'prev'
             }).on("page", function (e, num) {

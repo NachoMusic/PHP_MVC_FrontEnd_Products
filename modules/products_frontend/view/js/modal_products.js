@@ -36,11 +36,11 @@ $(document).ready(function () {
                 },
                 show: {
                     effect: "blind",
-                    duration: 1000
+                    duration: 300
                 },
                 hide: {
                     effect: "explode",
-                    duration: 1000
+                    duration: 300
                 }
             });
         })
