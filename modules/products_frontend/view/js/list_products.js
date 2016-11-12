@@ -70,7 +70,12 @@ function search_product(keyword) {
         $('.pagination_prods').html('');
 
         var img_product = document.getElementById('img_prod');
-        img_product.innerHTML = '<img src="media/' + product[0].avatar + '" class="img-product"> ';
+        if (product[0].avatar==""){
+            img_product.innerHTML = '<img src="media/default-avatar.png" class="img-product" width="200px;"> ';
+        } else {
+            img_product.innerHTML = '<img src="media/' + product[0].avatar + '" class="img-product"> ';
+        }
+        // img_product.innerHTML = '<img src="media/' + product[0].avatar + '" class="img-product"> ';
         // console.log('<img src="media/' + product[0].avatar + '" class="img-product"> ');
         var nom_product = document.getElementById('name_prod');
         nom_product.innerHTML = product[0].product_name;

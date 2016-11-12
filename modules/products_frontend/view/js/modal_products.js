@@ -10,8 +10,11 @@ $(document).ready(function () {
             var product = json.product;
             //alert(product.name);
             //console.log(product);
-
-            $("#img_prod").html('<img src="media/' + product.avatar + '" height="75" width="75"> ');
+            if (product.avatar==""){
+                $("#img_prod").html('<img src="media/default-avatar.png" height="75" width="75"> ');
+            } else {
+                $("#img_prod").html('<img src="media/' + product.avatar + '" height="75" width="75"> ');
+            }
             $("#name_prod").html(product.product_name);
             $("#description_prod").html("<strong>Description: <br/></strong>" + product.product_description);
             $("#titration_prod").html("<strong>ID:</strong>" + product.product_id);

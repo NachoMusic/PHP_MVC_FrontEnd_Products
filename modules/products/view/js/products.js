@@ -146,20 +146,20 @@ $(document).ready(function() {
                 //siempre que creemos un plugin debemos llamarlo, sino no funcionará
                 $(this).fill_or_clean();
             } else {
-                // $("#product_name").val(response.product.product_name);
-                // $("#product_description").val(response.product.product_description);
-                // $("#product_price").val(response.product.product_price);
-                // $("#product_id").val(response.product.product_id);
-                // $("#enter_date").val(response.product.enter_date);
-                // $("#obsolescence_date").val(response.product.obsolescence_date);
-                /*
+                $("#product_name").val(response.product.product_name);
+                $("#product_description").val(response.product.product_description);
+                $("#product_price").val(response.product.product_price);
+                $("#product_id").val(response.product.product_id);
+                $("#enter_date").val(response.product.enter_date);
+                $("#obsolescence_date").val(response.product.obsolescence_date);
+
                 var inputElements = document.getElementsByClassName('messageCheckbox');
                 for (var i = 0; i < interests.length; i++) {
                     for (var j = 0; j < inputElements.length; j++) {
                         if (interests[i] === inputElements[j])
                             inputElements[j].checked = true;
                     }
-                }*/
+                }
             }
         }, "json");
 
