@@ -51,7 +51,11 @@ function paint_template_products($arrData) {
             //echo $productos['id'] . " " . $productos['nombre'] . "</br>";
             //echo $productos['descripcion'] . " " . $productos['precio'] . "</br>";
             print ("<div class='prod' id='" . $product['product_id'] . "'>");
-            print ("<img class='prodImg' src='" . "media/" .$product['avatar'] . "'alt='product' >");
+            if($product['avatar'] == ""){
+                print ("<img class='prodImg' src='media/default-avatar.png' alt='product' width='100px' >");
+            } else {
+                print ("<img class='prodImg' src='" . "media/" .$product['avatar'] . "'alt='product' >");
+            }
             print ("<p>" . $product['product_name'] . "</p>");
             print ("<p id='p2'>" . $product['product_price'] . "€</p>");
             print ("</div>");

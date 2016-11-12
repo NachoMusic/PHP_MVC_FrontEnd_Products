@@ -160,20 +160,18 @@ $(document).ready(function () {
     });
 
     $.get("modules/products_frontend/controller/controller_products_frontend.class.php?autocomplete=true", function (data, status) {
-        console.log(data);
         var json = JSON.parse(data);
         var nom_productos = json.nom_productos;
         //alert(nom_productos[0].nombre);
-        console.log(nom_productos);
-        console.log(nom_productos.length);
+        // console.log(nom_productos);
+        // console.log(nom_productos.length);
         var suggestions = new Array();
         for (var i = 0; i < nom_productos.length; i++) {
             suggestions.push(nom_productos[i].product_name);
         }
         //alert(suggestions);
-        console.log(suggestions);
+        // console.log(suggestions);
         //console.log(suggestions);
-        console.log("outside");
         $("#keyword").autocomplete({
             source: suggestions,
             minLength: 1,
